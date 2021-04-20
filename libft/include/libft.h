@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/18 15:51:44 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/20 12:49:36 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void			ft_bzero(void *addr, size_t size);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			ft_putstr(char *str);
 void			ft_putstr_fd(char const *str, int fd);
+void			ft_putnbr_base_fd(long nb, const char *base_char, int fd);
+void			ft_putnbr(long nb);
 
 /*
 # include <string.h>

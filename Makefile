@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:21:44 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/18 14:55:36 by user42           ###   ########.fr        #
+#    Updated: 2021/04/20 19:27:52 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ_DIR) $(OBJ)
 	@echo "$(GREEN)objects done sir !$(RESET)"
-	$(CC) -L$(LIB_DIR) $(LFLAGS) -o $(NAME) $(OBJ) $(LIBFLAGS)
+	@$(CC) -L$(LIB_DIR) $(LFLAGS) -o $(NAME) $(OBJ) $(LIBFLAGS)
 	@echo "$(GREEN)$(NAME) compiled sir !$(RESET)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADERS)

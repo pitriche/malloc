@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/18 15:52:03 by user42           ###   ########.fr        #
+#    Updated: 2021/04/20 18:25:11 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,23 +23,26 @@ RESET   = \033[0m
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra
 CFLAGS = -c $(FLAGS) -fPIC
 CINCLUDE = -I include
 
 NAME = libft_malloc_$(HOSTTYPE).so
 
 SRC = \
-ft_bzero.c		\
-ft_memmove.c	\
-ft_putstr_fd.c	\
-ft_putstr.c		\
-
+ft_bzero.c			\
+ft_memmove.c		\
+ft_putstr_fd.c		\
+ft_putstr.c			\
+ft_putnbr_base_fd.c	\
+ft_putnbr.c	\
+\
+ft_malloc_utils.c	\
+show_alloc_mem.c	\
+ft_malloc.c			\
 
 # \
-ft_malloc.c			\
 ft_realloc.c		\
-show_alloc_mem.c	\
 
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
