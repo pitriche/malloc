@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 19:24:31 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/20 22:01:51 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 typedef struct	s_malloc_bloc
 {
-	unsigned	off;	// bloc offset from page memory start
+	size_t		off;	// bloc offset from page memory start
 	size_t		len;	// bloc length
 }				t_malloc_bloc;
 

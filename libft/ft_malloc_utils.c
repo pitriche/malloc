@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 19:24:38 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/20 22:14:05 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t			_to_page_size_multiple(size_t size)
 
 	if (size == 0U)
 		return (0U);
-	page_size = getpagesize();
+	page_size = (size_t)getpagesize();
 	size -= 1;
 	return ((size / page_size + 1) * page_size);
 }

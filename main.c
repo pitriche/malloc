@@ -12,29 +12,40 @@ int	main(void)
 	ft_putstr(buf);
 
 
-	ft_malloc(10);
+	void *ptr1 = ft_malloc(1000);
 	ft_malloc(9);
 	ft_malloc(63);
-	ft_malloc(1);
-	ft_malloc(10);
-	ft_malloc(9);
-	ft_malloc(63);
-	ft_malloc(1);
-	ft_malloc(2);
-	ft_malloc(110);
-	ft_malloc(19);
-	ft_malloc(163);
-	ft_malloc(11);
-	ft_malloc(110);
-	ft_malloc(19);
-	ft_malloc(163);
-	ft_malloc(11);
-	ft_malloc(21);
-	ft_malloc(2100);
-	ft_malloc(4095);
-	ft_malloc(4096);
-	ft_malloc(4097);
-	ft_malloc(12001);
 	show_alloc_mem();
+	for (unsigned i = 0; i < 600; ++i)
+	{
+		//ft_free(ptr1);
+		ptr1 = ft_malloc(10000);
+		((char *)ptr1)[100] = 10;
+	}
+	// ft_malloc(1);
+	// ft_malloc(10);
+	// ft_malloc(9);
+	// ft_malloc(63);
+	// ft_malloc(1);
+	// ft_malloc(2);
+	// ft_malloc(11);
+	// ft_malloc(21);
+	// ft_malloc(19);
+	// ft_malloc(11);
+	// ft_malloc(19);
+	ft_free(ft_malloc(110));
+	ft_free(ft_malloc(163));
+	ft_free(ft_malloc(110));
+	ft_free(ft_malloc(163));
+	ft_free(ft_malloc(2100));
+	ft_free(ft_malloc(4095));
+	// ft_malloc(4096);
+	// ft_malloc(4097);
+	// ft_malloc(12001);
+	show_alloc_mem();
+	ft_free(ptr1);
+	ft_putstr("\n");
+	show_alloc_mem();
+	//while (1);
 	return (0);
 }

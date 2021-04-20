@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 12:49:15 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/20 22:05:33 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void				ft_putnbr_base_fd(long nb, const char *base_char, int fd)
 		return ;
 	if (nb < 0)
 	{
-		absolute = -nb;
+		absolute = (unsigned long)-nb;
 		_putch_fd('-', fd);
 	}
 	else
-		absolute = nb;
+		absolute = (unsigned long)nb;
 	_rec_putnbr_base(absolute, base_char, base, fd);
 }

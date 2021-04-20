@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 19:25:01 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/20 22:11:32 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static size_t	pr_tiny(t_malloc_tiny *tmp)
 			ft_putstr("0x");
 			ft_putnbr_base_fd((long)addr, "0123456789ABCDEF", 1);
 			ft_putstr(" - 0x");
-			ft_putnbr_base_fd((long)addr + tmp->bloc[i].len - 1,
+			ft_putnbr_base_fd((long)addr + (long)tmp->bloc[i].len - 1,
 				"0123456789ABCDEF", 1);
 			ft_putstr(" : ");
-			ft_putnbr(tmp->bloc[i].len);
+			ft_putnbr((long)tmp->bloc[i].len);
 			ft_putstr(" octets\n");
 			total += tmp->bloc[i].len;
 		}
@@ -59,10 +59,10 @@ static size_t	pr_small(t_malloc_medium *tmp)
 			ft_putstr("0x");
 			ft_putnbr_base_fd((long)addr, "0123456789ABCDEF", 1);
 			ft_putstr(" - 0x");
-			ft_putnbr_base_fd((long)addr + tmp->bloc[i].len - 1,
+			ft_putnbr_base_fd((long)addr + (long)tmp->bloc[i].len - 1,
 				"0123456789ABCDEF", 1);
 			ft_putstr(" : ");
-			ft_putnbr(tmp->bloc[i].len);
+			ft_putnbr((long)tmp->bloc[i].len);
 			ft_putstr(" octets\n");
 			total += tmp->bloc[i].len;
 		}
@@ -88,10 +88,10 @@ static size_t	pr_large(t_malloc_large *tmp)
 			ft_putstr("0x");
 			ft_putnbr_base_fd((long)addr, "0123456789ABCDEF", 1);
 			ft_putstr(" - 0x");
-			ft_putnbr_base_fd((long)addr + tmp->original_size[i] - 1,
+			ft_putnbr_base_fd((long)addr + (long)tmp->original_size[i] - 1,
 				"0123456789ABCDEF", 1);
 			ft_putstr(" : ");
-			ft_putnbr(tmp->original_size[i]);
+			ft_putnbr((long)tmp->original_size[i]);
 			ft_putstr(" octets\n");
 			total += tmp->original_size[i];
 		}
@@ -115,6 +115,6 @@ void			show_alloc_mem(void)
 	total += pr_small(data->medium);
 	total += pr_large(data->large);
 	ft_putstr("Total : ");
-	ft_putnbr(total);
+	ft_putnbr((long)total);
 	ft_putstr(" octets\n");
 }

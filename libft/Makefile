@@ -6,7 +6,7 @@
 #    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/20 18:25:11 by brunomartin      ###   ########.fr        #
+#    Updated: 2021/04/20 22:04:20 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RESET   = \033[0m
 
 CC = gcc
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -Wconversion -Wuninitialized
 CFLAGS = -c $(FLAGS) -fPIC
 CINCLUDE = -I include
 
@@ -40,6 +40,7 @@ ft_putnbr.c	\
 ft_malloc_utils.c	\
 show_alloc_mem.c	\
 ft_malloc.c			\
+ft_free.c			\
 
 # \
 ft_realloc.c		\
