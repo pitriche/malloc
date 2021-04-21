@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/21 12:50:50 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:43:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
 
-#include <sys/_types/_size_t.h>	// size_t
+#include <stddef.h>	// size_t
 
 /*
 ** for 4096B pages
