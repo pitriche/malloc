@@ -6,7 +6,7 @@
 #    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/20 22:04:20 by brunomartin      ###   ########.fr        #
+#    Updated: 2021/04/21 10:27:26 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,8 @@ ft_malloc_utils.c	\
 show_alloc_mem.c	\
 ft_malloc.c			\
 ft_free.c			\
-
-# \
 ft_realloc.c		\
+
 
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/19 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/21 11:18:41 by brunomartin      ###   ########.fr       */
+/*   Created: 2021/04/21 14:40:28 by pitriche          #+#    #+#             */
+/*   Updated: 2021/04/21 11:22:12 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,71 @@
 #include "libft.h"		// ft_memmove
 #include <sys/mman.h>	// munmap
 
-static void	_free_tiny(t_malloc_tiny *last, void *ptr)
+
+static size_t	_min(size_t t1, size_t t2) { return (t1 > t2 ? t2 : t1); }
+
+static void	*_realloc_tiny(t_malloc_tiny *last, void *old_ptr, size_t size)
 {
 	size_t	tmp;
+	void	*new_ptr;
 
-	if (ptr == 0)
-		return ;
 	while (last != 0)
 	{
-		tmp = (size_t)(ptr - (void *)last->memory);
+		tmp = (size_t)(old_ptr - (void *)last->memory);
 		for (unsigned i = 0; i < last->number_bloc; ++i)
 			if (last->bloc[i].off == tmp)
 			{
+				new_ptr = ft_malloc(size);
+				ft_memmove(new_ptr, old_ptr, _min(size, last->bloc[i].len));
 				if (i == last->number_bloc - 1)
 					last->memory_free += last->bloc[i].len;
 				ft_memmove(last->bloc + i, last->bloc + i + 1,
 					(last->number_bloc - i - 1) * sizeof(t_malloc_bloc));
 				last->number_bloc--;
-				return ;
+				return (new_ptr);
 			}
 		last = last->next;
 	}
+	return (0);
 }
 
-static void	_free_medium(t_malloc_medium *last, void *ptr)
+static void	*_realloc_medium(t_malloc_medium *last, void *old_ptr, size_t size)
 {
 	size_t	tmp;
+	void	*new_ptr;
 
-	if (ptr == 0)
-		return ;
 	while (last != 0)
 	{
-		tmp = (size_t)(ptr - (void *)last->memory);
+		tmp = (size_t)(old_ptr - (void *)last->memory);
 		for (unsigned i = 0; i < last->number_bloc; ++i)
 			if (last->bloc[i].off == tmp)
 			{
+				new_ptr = ft_malloc(size);
+				ft_memmove(new_ptr, old_ptr, _min(size, last->bloc[i].len));
 				if (i == last->number_bloc - 1)
 					last->memory_free += last->bloc[i].len;
 				ft_memmove(last->bloc + i, last->bloc + i + 1,
 					(last->number_bloc - i - 1) * sizeof(t_malloc_bloc));
 				last->number_bloc--;
-				return ;
+				return (new_ptr);
 			}
 		last = last->next;
 	}
+	return (0);
 }
 
-static void	_free_large(t_malloc_large *last, void *ptr)
+static void	*_realloc_large(t_malloc_large *last, void *old_ptr, size_t size)
 {
-	if (ptr == 0)
-		return ;
+	void	*new_ptr;
+
 	while (last != 0)
 	{
 		for (unsigned i = 0; i < last->number_bloc; ++i)
-			if (last->memory[i] == ptr)
+			if (last->memory[i] == old_ptr)
 			{
+				new_ptr = ft_malloc(size);
+				ft_memmove(new_ptr, old_ptr, _min(size,
+					last->original_size[i]));
 				munmap(last->memory[i], last->mmap_size[i]);
 				ft_memmove(last->memory + i, last->memory + i + 1,
 					(last->number_bloc - i - 1) * sizeof(void *));
@@ -77,80 +87,34 @@ static void	_free_large(t_malloc_large *last, void *ptr)
 				ft_memmove(last->mmap_size + i, last->mmap_size + i + 1,
 					(last->number_bloc - i - 1) * sizeof(size_t));
 				last->number_bloc--;
-				return ;
+				return (new_ptr);
 			}
 		last = last->next;
 	}
+	return (0);
 }
 
-// page sniffers, free empty pages on tiny medium and large
-static void	_pages_sniffer_tiny(t_malloc *data)
-{
-	void			*tmp;
-	t_malloc_tiny	*prev;
-
-	prev = data->tiny;
-	while (prev != 0)
-	{
-		if (prev->next != 0 && prev->next->number_bloc == 0)
-		{
-			tmp = prev->next->next;
-			munmap(prev->next, prev->next->mmap_alloc_size);
-			prev->next = tmp;
-		}
-		prev = prev->next;
-	}
-}
-
-static void	_pages_sniffer_medium(t_malloc *data)
-{
-	void			*tmp;
-	t_malloc_medium	*prev;
-
-	prev = data->medium;
-	while (prev != 0)
-	{
-		if (prev->next != 0 && prev->next->number_bloc == 0)
-		{
-			tmp = prev->next->next;
-			munmap(prev->next, prev->next->mmap_alloc_size);
-			prev->next = tmp;
-		}
-		prev = prev->next;
-	}
-}
-
-static void	_pages_sniffer_large(t_malloc *data)
-{
-	void			*tmp;
-	t_malloc_large	*prev;
-
-	prev = data->large;
-	while (prev != 0)
-	{
-		if (prev->next != 0 && prev->next->number_bloc == 0)
-		{
-			tmp = prev->next->next;
-			munmap(prev->next, prev->next->mmap_alloc_size);
-			prev->next = tmp;
-		}
-		prev = prev->next;
-	}
-}
-
-void		ft_free(void *ptr)
+void		*ft_realloc(void *ptr, size_t size)
 {
 	t_malloc	*data;
+	void		*new;
 
 	// check for mmap error
 	data = _malloc_singleton();
 	if (data->tiny == 0 || data->medium == 0 || data->large == 0)
-		return ;
-
-	_free_tiny(data->tiny, ptr);
-	_free_medium(data->medium, ptr);
-	_free_large(data->large, ptr);
-	_pages_sniffer_tiny(data);
-	_pages_sniffer_medium(data);
-	_pages_sniffer_large(data);
+		return (0);
+	if (ptr == 0)
+		return (ft_malloc(size));
+	if (size == 0)
+	{
+		ft_free(ptr);
+		return (ft_malloc(1)); // to comply malloc(3) macos man
+	}
+	new = _realloc_tiny(data->tiny, ptr, size);
+	if (new != 0)
+		return (new);
+	new = _realloc_medium(data->medium, ptr, size);
+	if (new != 0)
+		return (new);
+	return (_realloc_large(data->large, ptr, size));
 }

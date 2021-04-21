@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 22:11:32 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 10:30:05 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static size_t	pr_tiny(t_malloc_tiny *tmp)
 
 	total = 0U;
 	ft_putstr("TINY : 0x");
-	ft_putnbr_base_fd((long)tmp, "0123456789ABCDEF", 1);
+	ft_putnbr_base_fd((long)tmp->memory, "0123456789ABCDEF", 1);
 	ft_putstr("\n");
 	while (tmp)
 	{
@@ -49,7 +49,7 @@ static size_t	pr_small(t_malloc_medium *tmp)
 
 	total = 0U;
 	ft_putstr("SMALL : 0x");
-	ft_putnbr_base_fd((long)tmp, "0123456789ABCDEF", 1);
+	ft_putnbr_base_fd((long)tmp->memory, "0123456789ABCDEF", 1);
 	ft_putstr("\n");
 	while (tmp)
 	{
@@ -78,7 +78,7 @@ static size_t	pr_large(t_malloc_large *tmp)
 
 	total = 0U;
 	ft_putstr("LARGE : 0x");
-	ft_putnbr_base_fd((long)tmp, "0123456789ABCDEF", 1);
+	ft_putnbr_base_fd((long)tmp->memory, "0123456789ABCDEF", 1);
 	ft_putstr("\n");
 	while (tmp)
 	{
