@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/21 11:47:40 by brunomartin      ###   ########.fr        #
+#    Updated: 2021/04/21 12:35:36 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ CC = gcc
 FLAGS = -Wall -Wextra -Wconversion -Wuninitialized
 CFLAGS = -c $(FLAGS) -fPIC
 CINCLUDE = -I include
+
+
+ifndef HOSTTYPE
+HOSTTYPE := $(shell uname -m)_$(shell uname -s)
+endif
 
 NAME = libft_malloc_$(HOSTTYPE).so
 LINK_NAME = libft_malloc.so
