@@ -6,7 +6,7 @@
 #    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/21 10:27:26 by brunomartin      ###   ########.fr        #
+#    Updated: 2021/04/21 11:47:40 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ CFLAGS = -c $(FLAGS) -fPIC
 CINCLUDE = -I include
 
 NAME = libft_malloc_$(HOSTTYPE).so
+LINK_NAME = libft_malloc.so
 
 SRC = \
 ft_bzero.c			\
@@ -51,6 +52,8 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 all: $(OBJ_DIR) $(NAME)
 	@echo "$(CYAN)$(NAME) ready sir !$(RESET)"
+	ln -s $(NAME) $(LINK_NAME)
+	@echo "$(CYAN)$(LINK_NAME) ready sir !$(RESET)"
 
 $(NAME): $(OBJ)
 	@gcc -shared -o $@ $^
@@ -68,6 +71,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(LINK_NAME)
 
 re: fclean all
 

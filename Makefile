@@ -6,7 +6,7 @@
 #    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:21:44 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/20 19:27:52 by brunomartin      ###   ########.fr        #
+#    Updated: 2021/04/21 11:44:22 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CFLAGS = -c $(FLAGS)
 LIB_NAME = libft_malloc_$(HOSTNAME).so
 LIB_DIR = libft
 LIB = $(LIB_DIR)/$(LIB_NAME)
-LIBFLAGS = -lft_malloc_$(HOSTNAME)
+LIBFLAGS = -lft_malloc
 
 HEADERS = libft/include/libft.h 
 CINCLUDE = -I include -I libft/include
