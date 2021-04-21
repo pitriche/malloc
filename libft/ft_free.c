@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 22:49:10 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 10:04:45 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,59 @@ static void	_free_large(t_malloc_large *last, void *ptr)
 	}
 }
 
-static void	_pages_free(t_malloc *data)
+// page sniffers, free empty pages on tiny medium and large
+static void	_pages_sniffer_tiny(t_malloc *data)
 {
-	// free empty pages on tiny medium and large
+	void			*tmp;
+	t_malloc_tiny	*prev;
+
+	prev = data->tiny;
+	while (prev != 0)
+	{
+		if (prev->next != 0 && prev->next->number_bloc == 0)
+		{
+			tmp = prev->next->next;
+			munmap(prev->next, prev->next->mmap_alloc_size);
+			prev->next = tmp;
+		}
+		prev = prev->next;
+	}
+}
+
+static void	_pages_sniffer_medium(t_malloc *data)
+{
+	void			*tmp;
+	t_malloc_medium	*prev;
+
+	prev = data->medium;
+	while (prev != 0)
+	{
+		if (prev->next != 0 && prev->next->number_bloc == 0)
+		{
+			tmp = prev->next->next;
+			munmap(prev->next, prev->next->mmap_alloc_size);
+			prev->next = tmp;
+		}
+		prev = prev->next;
+	}
+}
+
+static void	_pages_sniffer_large(t_malloc *data)
+{
+	void			*tmp;
+	t_malloc_large	*prev;
+
+	prev = data->large;
+	while (prev != 0)
+	{
+		if (prev->next != 0 && prev->next->number_bloc == 0)
+		{
+			tmp = prev->next->next;
+			munmap(prev->next, prev->next->mmap_alloc_size);
+			prev->next = tmp;
+		}
+		prev = prev->next;
+	}
 }
 
 void		ft_free(void *ptr)
@@ -98,5 +148,7 @@ void		ft_free(void *ptr)
 	_free_tiny(data->tiny, ptr);
 	_free_medium(data->medium, ptr);
 	_free_large(data->large, ptr);
-	_pages_free(data);
+	_pages_sniffer_tiny(data);
+	_pages_sniffer_medium(data);
+	_pages_sniffer_large(data);
 }

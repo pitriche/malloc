@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 22:01:51 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 10:06:00 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 */
 # define TINY_SIZE			64U		// max size of element (strictly inferior to)
 # define MEMORY_TINY_SIZE	4096U	// size of memory in each malloc page
-# define MAX_TINY_BLOC		510		// number of max size elements in each malloc page
+# define MAX_TINY_BLOC		5		// number of max size elements in each malloc page
 
 # define MEDIUM_SIZE		4096U
 # define MEMORY_MEDIUM_SIZE	262144U

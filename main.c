@@ -14,14 +14,14 @@ int	main(void)
 
 	void *ptr1 = ft_malloc(1000);
 	ft_malloc(9);
-	ft_malloc(63);
-	show_alloc_mem();
-	for (unsigned i = 0; i < 600; ++i)
+	//ft_malloc(63);
+	for (unsigned i = 0; i < 5; ++i)
 	{
-		//ft_free(ptr1);
-		ptr1 = ft_malloc(10000);
-		((char *)ptr1)[100] = 10;
+		ptr1 = ft_malloc(10);
+		((char *)ptr1)[1] = 10;
 	}
+	show_alloc_mem();
+		ft_free(ptr1);
 	// ft_malloc(1);
 	// ft_malloc(10);
 	// ft_malloc(9);
@@ -44,8 +44,9 @@ int	main(void)
 	// ft_malloc(12001);
 	show_alloc_mem();
 	ft_free(ptr1);
+	ft_free(ptr1);
 	ft_putstr("\n");
 	show_alloc_mem();
-	//while (1);
+	// while (1);
 	return (0);
 }
