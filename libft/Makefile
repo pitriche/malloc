@@ -52,7 +52,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 all: $(OBJ_DIR) $(NAME)
 	@echo "$(CYAN)$(NAME) ready sir !$(RESET)"
-	ln -s $(NAME) $(LINK_NAME)
+	@ln -s $(NAME) $(LINK_NAME)
 	@echo "$(CYAN)$(LINK_NAME) ready sir !$(RESET)"
 
 $(NAME): $(OBJ)
