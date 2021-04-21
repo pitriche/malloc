@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2021/04/21 12:35:36 by user42           ###   ########.fr        #
+#    Updated: 2021/04/21 12:49:58 by brunomartin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +55,13 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 .PHONY: all clean fclean re
 
-all: $(OBJ_DIR) $(NAME)
+
+all: $(OBJ_DIR) $(NAME) $(LINK_NAME)
+	@echo "$(CYAN)$(LINK_NAME) ready sir !$(RESET)"
+
+$(LINK_NAME):
 	@echo "$(CYAN)$(NAME) ready sir !$(RESET)"
 	@ln -s $(NAME) $(LINK_NAME)
-	@echo "$(CYAN)$(LINK_NAME) ready sir !$(RESET)"
 
 $(NAME): $(OBJ)
 	@gcc -shared -o $@ $^

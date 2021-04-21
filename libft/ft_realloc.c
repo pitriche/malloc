@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/21 11:22:12 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:53:24 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	*_realloc_tiny(t_malloc_tiny *last, void *old_ptr, size_t size)
 		for (unsigned i = 0; i < last->number_bloc; ++i)
 			if (last->bloc[i].off == tmp)
 			{
-				new_ptr = ft_malloc(size);
+				new_ptr = malloc(size);
 				ft_memmove(new_ptr, old_ptr, _min(size, last->bloc[i].len));
 				if (i == last->number_bloc - 1)
 					last->memory_free += last->bloc[i].len;
@@ -53,7 +53,7 @@ static void	*_realloc_medium(t_malloc_medium *last, void *old_ptr, size_t size)
 		for (unsigned i = 0; i < last->number_bloc; ++i)
 			if (last->bloc[i].off == tmp)
 			{
-				new_ptr = ft_malloc(size);
+				new_ptr = malloc(size);
 				ft_memmove(new_ptr, old_ptr, _min(size, last->bloc[i].len));
 				if (i == last->number_bloc - 1)
 					last->memory_free += last->bloc[i].len;
@@ -76,7 +76,7 @@ static void	*_realloc_large(t_malloc_large *last, void *old_ptr, size_t size)
 		for (unsigned i = 0; i < last->number_bloc; ++i)
 			if (last->memory[i] == old_ptr)
 			{
-				new_ptr = ft_malloc(size);
+				new_ptr = malloc(size);
 				ft_memmove(new_ptr, old_ptr, _min(size,
 					last->original_size[i]));
 				munmap(last->memory[i], last->mmap_size[i]);
@@ -94,7 +94,7 @@ static void	*_realloc_large(t_malloc_large *last, void *old_ptr, size_t size)
 	return (0);
 }
 
-void		*ft_realloc(void *ptr, size_t size)
+void		*realloc(void *ptr, size_t size)
 {
 	t_malloc	*data;
 	void		*new;
@@ -104,11 +104,11 @@ void		*ft_realloc(void *ptr, size_t size)
 	if (data->tiny == 0 || data->medium == 0 || data->large == 0)
 		return (0);
 	if (ptr == 0)
-		return (ft_malloc(size));
+		return (malloc(size));
 	if (size == 0)
 	{
-		ft_free(ptr);
-		return (ft_malloc(1)); // to comply malloc(3) macos man
+		free(ptr);
+		return (malloc(1)); // to comply malloc(3) macos man
 	}
 	new = _realloc_tiny(data->tiny, ptr, size);
 	if (new != 0)

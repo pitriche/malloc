@@ -12,18 +12,18 @@ int	main(void)
 	// ft_putstr(buf);
 
 
-	void *ptr1 = ft_malloc(1000);
-	ft_malloc(9);
-	void *ptr2 = ft_malloc(42);
-	void *ptr3 = ft_malloc(69420);
+	void *ptr1 = malloc(1000);
+	malloc(9);
+	void *ptr2 = malloc(42);
+	void *ptr3 = malloc(69420);
 	//ft_malloc(63);
 	for (unsigned i = 0; i < 1; ++i)
 	{
-		ptr1 = ft_malloc(10);
+		ptr1 = malloc(10);
 		((char *)ptr1)[1] = 10;
 	}
 	//show_alloc_mem();
-		ft_free(ptr1);
+		free(ptr1);
 	// ft_malloc(1);
 	// ft_malloc(10);
 	// ft_malloc(9);
@@ -35,53 +35,53 @@ int	main(void)
 	// ft_malloc(19);
 	// ft_malloc(11);
 	// ft_malloc(19);
-	ft_free(ft_malloc(110));
-	ft_free(ft_malloc(163));
-	ft_free(ft_malloc(110));
-	ft_free(ft_malloc(163));
-	ft_free(ft_malloc(2100));
-	ft_free(ft_malloc(4095));
+	free(malloc(110));
+	free(malloc(163));
+	free(malloc(110));
+	free(malloc(163));
+	free(malloc(2100));
+	free(malloc(4095));
 	// ft_malloc(4096);
 	// ft_malloc(4097);
 	// ft_malloc(12001);
 	//show_alloc_mem();
-	ft_free(ptr1);
-	ft_free(ptr1);
+	free(ptr1);
+	free(ptr1);
 	//ft_putstr("\n");
 	
 	show_alloc_mem();
 
 	// ft_free(ptr2);
-	ptr2 = ft_realloc(ptr2, 16);
-	ptr2 = ft_realloc(ptr2, 16);
-	ptr2 = ft_realloc(ptr2, 16);
-	ptr2 = ft_realloc(ptr2, 16);
-	ptr2 = ft_realloc(ptr2, 16);
+	ptr2 = realloc(ptr2, 16);
+	ptr2 = realloc(ptr2, 16);
+	ptr2 = realloc(ptr2, 16);
+	ptr2 = realloc(ptr2, 16);
+	ptr2 = realloc(ptr2, 16);
 
-	ptr3 = ft_realloc(ptr3, 4200);
-	ptr3 = ft_realloc(ptr3, 42000);
-	ptr3 = ft_realloc(ptr3, 420000);
-	ptr3 = ft_realloc(ptr3, 42000);
-	ptr3 = ft_realloc(ptr3, 4200);
-	ptr3 = ft_realloc(ptr3, 420);
-	ptr3 = ft_realloc(ptr3, 42000);
-	ptr3 = ft_realloc(ptr3, 420000);
-	ptr3 = ft_realloc(ptr3, 42000);
-	ptr3 = ft_realloc(ptr3, 4200);
-	ptr3 = ft_realloc(ptr3, 420);
-	ptr2 = ft_realloc(ptr2, 42000);
+	ptr3 = realloc(ptr3, 4200);
+	ptr3 = realloc(ptr3, 42000);
+	ptr3 = realloc(ptr3, 420000);
+	ptr3 = realloc(ptr3, 42000);
+	ptr3 = realloc(ptr3, 4200);
+	ptr3 = realloc(ptr3, 420);
+	ptr3 = realloc(ptr3, 42000);
+	ptr3 = realloc(ptr3, 420000);
+	ptr3 = realloc(ptr3, 42000);
+	ptr3 = realloc(ptr3, 4200);
+	ptr3 = realloc(ptr3, 420);
+	ptr2 = realloc(ptr2, 42000);
 
 	ft_putstr("\n");
-	char *str = ft_malloc(10);
+	char *str = malloc(10);
 	ft_memmove(str, "rafale !\n", 10);
 	ft_putstr(str);
 	show_alloc_mem();
 
-	str = ft_realloc(str, 10000);
+	str = realloc(str, 10000);
 	ft_memmove(str, "rafale ! rafale ! rafale !\n", 28);
 	ft_putstr(str);
 	show_alloc_mem();
-	str = ft_realloc(str, 6);
+	str = realloc(str, 6);
 	str[5] = 0;
 	ft_putstr(str);
 	show_alloc_mem();

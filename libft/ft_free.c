@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/21 11:18:41 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:53:52 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ static void	_pages_sniffer_large(t_malloc *data)
 	}
 }
 
-void		ft_free(void *ptr)
+void		free(void *ptr)
 {
 	t_malloc	*data;
 

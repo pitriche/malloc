@@ -6,7 +6,7 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/21 10:09:13 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:53:38 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	*_malloc_large(size_t size)
 	return (ret);
 }
 
-void		*ft_malloc(size_t size)
+void		*malloc(size_t size)
 {
 	t_malloc	*data;
 

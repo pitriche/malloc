@@ -6,15 +6,14 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 12:49:36 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:47:05 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
-
+#include <sys/_types/_size_t.h>	// size_t
 # include "ft_malloc.h"
 
 void			ft_bzero(void *addr, size_t size);

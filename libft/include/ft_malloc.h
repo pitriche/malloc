@@ -6,14 +6,14 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/21 10:06:00 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:50:50 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
 
-# include <unistd.h>	// size_t
+#include <sys/_types/_size_t.h>	// size_t
 
 /*
 ** for 4096B pages
@@ -79,9 +79,9 @@ typedef struct	s_malloc
 	t_malloc_large		*large;
 }				t_malloc;
 
-void			ft_free(void *ptr);
-void			*ft_malloc(size_t size);
-void			*ft_realloc(void *ptr, size_t size);
+void			free(void *ptr);
+void			*malloc(size_t size);
+void			*realloc(void *ptr, size_t size);
 void			show_alloc_mem(void);
 
 /*

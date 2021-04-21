@@ -6,12 +6,13 @@
 /*   By: brunomartin <brunomartin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 14:40:28 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/20 22:14:05 by brunomartin      ###   ########.fr       */
+/*   Updated: 2021/04/21 12:45:49 by brunomartin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 #include <sys/mman.h>	// mmap
+#include <unistd.h>
 
 size_t			_to_page_size_multiple(size_t size)
 {
